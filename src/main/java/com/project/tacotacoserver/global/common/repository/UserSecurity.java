@@ -1,6 +1,6 @@
 package com.project.tacotacoserver.global.common.repository;
 
-import com.project.tacotacoserver.domain.user.client.dto.User;
+import com.project.tacotacoserver.domain.user.dto.User;
 
 public interface UserSecurity {
 

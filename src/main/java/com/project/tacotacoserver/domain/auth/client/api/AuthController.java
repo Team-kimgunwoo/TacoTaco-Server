@@ -6,7 +6,6 @@ import com.project.tacotacoserver.domain.auth.client.dto.request.SignUpRequest;
 import com.project.tacotacoserver.domain.auth.service.AuthService;
 import com.project.tacotacoserver.domain.auth.service.response.JsonWebTokenResponse;
 import com.project.tacotacoserver.domain.auth.service.response.RefreshTokenResponse;
-import com.project.tacotacoserver.domain.auth.service.response.SignUpResponse;
 import com.project.tacotacoserver.global.common.response.BaseResponse;
 import com.project.tacotacoserver.global.common.response.BaseResponseData;
 import io.swagger.v3.oas.annotations.Operation;

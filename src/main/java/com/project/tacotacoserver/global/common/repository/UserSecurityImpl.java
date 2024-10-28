@@ -1,6 +1,6 @@
 package com.project.tacotacoserver.global.common.repository;
 
-import com.project.tacotacoserver.domain.user.client.dto.User;
+import com.project.tacotacoserver.domain.user.dto.User;
 import com.project.tacotacoserver.global.security.auth.CustomUserDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
