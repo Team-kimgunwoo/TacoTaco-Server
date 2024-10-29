@@ -1,6 +1,5 @@
 package com.project.tacotacoserver.domain.geo.client.api;
 
-import com.project.tacotacoserver.domain.geo.client.dto.request.GeoRequest;
 import com.project.tacotacoserver.domain.geo.client.dto.response.GeoResponse;
 import com.project.tacotacoserver.domain.geo.service.GeoService;
 import com.project.tacotacoserver.global.common.response.BaseResponseData;
@@ -9,7 +8,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
