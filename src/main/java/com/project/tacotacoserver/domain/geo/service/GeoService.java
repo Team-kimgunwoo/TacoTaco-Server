@@ -2,7 +2,6 @@ package com.project.tacotacoserver.domain.geo.service;
 
 import com.project.tacotacoserver.domain.geo.dto.request.GeoRequest;
 import com.project.tacotacoserver.domain.geo.dto.response.GeoResponse;
-import com.project.tacotacoserver.domain.geo.exception.GeoErrorException;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
