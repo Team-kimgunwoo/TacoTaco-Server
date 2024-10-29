@@ -2,6 +2,7 @@ package com.project.tacotacoserver.domain.geo.service;
 
 import com.project.tacotacoserver.domain.geo.client.dto.request.GeoRequest;
 import com.project.tacotacoserver.domain.geo.client.dto.response.GeoResponse;
+import com.project.tacotacoserver.domain.geo.exception.GeoErrorException;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,6 +44,9 @@ public class GeoService {
                 entity,
                 GeoResponse.class
         );
+        if(responseEntity.getStatusCode().is4xxClientError()) {
+            throw GeoErrorException.EXCEPTION;
+        }
         return responseEntity.getBody();
     }
 
