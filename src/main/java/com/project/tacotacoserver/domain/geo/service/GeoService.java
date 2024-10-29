@@ -27,11 +27,11 @@ public class GeoService {
 //    @Value("${geo.client-secret}")
 //    private String clientSecret;
 
-    public GeoResponse getLocation(GeoRequest request) {
+    public GeoResponse getLocation(String ip) {
         URI uri = UriComponentsBuilder
                 .fromUriString(url)
                 .path("/geoLocation")
-                .queryParam("ip", request.ip())
+                .queryParam("ip", ip)
                 .queryParam("ext", "f")
                 .queryParam("enc", "utf8")
                 .queryParam("responseFormatType", "json")
