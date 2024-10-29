@@ -34,3 +34,6 @@ springdoc:
   swagger-ui:
     operationsSorter: method
     path: /swagger-ui.html
+
+geo:
+  api-url: ${secrets.API_URL}
