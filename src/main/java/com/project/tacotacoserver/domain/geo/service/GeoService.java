@@ -22,6 +22,10 @@ public class GeoService {
 
     @Value("${geo.api-url}")
     private String url;
+    @Value("${geo.client-id}")
+    private String clientId;
+    @Value("${geo.client-secret}")
+    private String clientSecret;
 
     public GeoResponse getLocation(GeoRequest request) {
         URI uri = UriComponentsBuilder
@@ -35,8 +39,8 @@ public class GeoService {
                 .build()
                 .toUri();
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-NCP-APIGW-API-KEY-ID", "your-client-id"); // 네이버 Client ID
-        headers.set("X-NCP-APIGW-API-KEY", "your-client-secret"); // 네이버 Client Secret
+        headers.set("X-NCP-APIGW-API-KEY-ID", clientId); // 네이버 Client ID
+        headers.set("X-NCP-APIGW-API-KEY", clientSecret); // 네이버 Client Secret
         HttpEntity<Void> entity = new HttpEntity<>(headers);
         ResponseEntity<GeoResponse> responseEntity = restTemplate.exchange(
                 uri,
