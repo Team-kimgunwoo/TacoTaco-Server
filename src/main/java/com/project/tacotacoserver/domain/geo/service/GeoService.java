@@ -33,20 +33,16 @@ public class GeoService {
                 .encode()
                 .build()
                 .toUri();
-
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-NCP-APIGW-API-KEY-ID", "your-client-id"); // 네이버 Client ID
         headers.set("X-NCP-APIGW-API-KEY", "your-client-secret"); // 네이버 Client Secret
-
         HttpEntity<Void> entity = new HttpEntity<>(headers);
-
         ResponseEntity<GeoResponse> responseEntity = restTemplate.exchange(
                 uri,
                 HttpMethod.GET,
                 entity,
                 GeoResponse.class
         );
-
         return responseEntity.getBody();
     }
 
