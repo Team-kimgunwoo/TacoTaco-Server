@@ -1,4 +1,4 @@
-package com.project.tacotacoserver.domain.geo.client.dto.response;
+package com.project.tacotacoserver.domain.geo.service.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.project.tacotacoserver.domain.geo.client.api;
 
-import com.project.tacotacoserver.domain.geo.client.dto.response.GeoResponse;
+import com.project.tacotacoserver.domain.geo.service.response.GeoResponse;
 import com.project.tacotacoserver.domain.geo.service.GeoService;
 import com.project.tacotacoserver.global.common.response.BaseResponseData;
 import io.swagger.v3.oas.annotations.Operation;
