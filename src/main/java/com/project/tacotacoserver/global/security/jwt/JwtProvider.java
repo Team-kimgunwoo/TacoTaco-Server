@@ -6,24 +6,35 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import java.security.Key;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
 
     private final JwtProperties jwtProperties;
+    private SecretKey secretKey;
 
-    private final SecretKey secretKey = new SecretKeySpec(
-            jwtProperties.getSecretKey().getBytes(StandardCharsets.UTF_8),
-            Jwts.SIG.HS256.key().build().getAlgorithm()
-    );
+    @PostConstruct
+    public void init() {
+        this.secretKey = new SecretKeySpec(
+                jwtProperties.getSecretKey().getBytes(StandardCharsets.UTF_8),
+                Jwts.SIG.HS256.key().build().getAlgorithm()
+        );
+    }
 
     public Jws<Claims> getClaims(final String token) {
         try {
@@ -44,7 +55,7 @@ public class JwtProvider {
                 .claim("authority", userRole)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + jwtProperties.getExpiration()))
-                .signWith(secretKey)
+                .signWith(SignatureAlgorithm.HS256 ,secretKey)
                 .compact();
     }
 

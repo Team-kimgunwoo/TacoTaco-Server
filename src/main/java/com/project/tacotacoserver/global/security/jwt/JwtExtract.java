@@ -26,11 +26,15 @@ public class JwtExtract {
     private final UserJpaRepository userRepository;
     private final User userDTO;
     private final JwtProperties jwtProperties;
+    private SecretKey secretKey;
 
-    private final SecretKey secretKey = new SecretKeySpec(
-            jwtProperties.getSecretKey().getBytes(StandardCharsets.UTF_8),
-            Jwts.SIG.HS256.key().build().getAlgorithm()
-    );
+    @PostConstruct
+    public void init() {
+        this.secretKey = new SecretKeySpec(
+                jwtProperties.getSecretKey().getBytes(StandardCharsets.UTF_8),
+                Jwts.SIG.HS256.key().build().getAlgorithm()
+        );
+    }
 
     public Authentication getAuthentication(final String token) {
         User user = userRepository
