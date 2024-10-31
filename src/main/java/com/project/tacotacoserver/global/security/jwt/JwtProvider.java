@@ -6,8 +6,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
+import java.security.Key;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -23,15 +26,11 @@ import java.util.Date;
 public class JwtProvider {
 
     private final JwtProperties jwtProperties;
-    private SecretKey secretKey;
 
-    @PostConstruct
-    public void init() {
-        this.secretKey = new SecretKeySpec(
-                jwtProperties.getSecretKey().getBytes(StandardCharsets.UTF_8),
-                Jwts.SIG.HS256.key().build().getAlgorithm()
-        );
-    }
+    private final SecretKey secretKey = new SecretKeySpec(
+            jwtProperties.getSecretKey().getBytes(StandardCharsets.UTF_8),
+            Jwts.SIG.HS256.key().build().getAlgorithm()
+    );
 
     public Jws<Claims> getClaims(final String token) {
         try {
